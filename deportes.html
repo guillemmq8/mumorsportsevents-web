@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mumor Sports Events | Deportes</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header id="navbar">
+        <nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li class="dropdown">
+                    <a href="deportes.html" class="active">DEPORTES <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="easter-cup.html">Fútbol: Easter Youth Cup</a>
+                    </div>
+                </li>
+                <li><a href="crea-tu-evento.html">CREA TU EVENTO</a></li>
+                <li><a href="conocenos.html">CONÓCENOS</a></li>
+                <li><a href="#contacto">CONTACTO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-container">
+        <h1 class="page-title">DEPORTES</h1>
+        <p style="margin-bottom: 40px; font-size: 1.1rem;">
+            Desliza para ver todas las competiciones activas y futuras.
+        </p>
+
+        <div class="slider-container-wrapper">
+            
+            <button id="scrollLeft" class="scroll-btn left-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <div class="horizontal-scroll-container">
+                
+                <div class="scroll-card">
+                    <a href="easter-cup.html" class="card-link-wrapper" style="height: 100%;">
+                        <div class="info-card" style="background-image: url('assets/img/futbol-cartel.jpg');">
+                            <div class="card-content">
+                                <h3>FÚTBOL</h3>
+                                <p>Torneos futbol base, amateur y de empresas.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="scroll-card">
+                    <a href="crea-tu-evento.html" class="card-link-wrapper" style="height: 100%;">
+                        <div class="info-card" style="background-image: url('assets/img/baloncesto-cartel.jpg');">
+                            <div class="card-content">
+                                <h3>BALONCESTO</h3>
+                                <p>Próximamente nuevos eventos.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="scroll-card">
+                    <a href="crea-tu-evento.html" class="card-link-wrapper" style="height: 100%;">
+                        <div class="info-card" style="background-image: url('assets/img/padel-cartel.jpg');">
+                            <div class="card-content">
+                                <h3>PÁDEL</h3>
+                                <p>Próximamente nuevos eventos.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="scroll-card">
+                    <a href="crea-tu-evento.html" class="card-link-wrapper" style="height: 100%;">
+                        <div class="info-card" style="background-image: url('assets/img/futsal-cartel.jpg');">
+                            <div class="card-content">
+                                <h3>FÚTBOL SALA</h3>
+                                <p>Próximamente nuevos eventos.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+            <button id="scrollRight" class="scroll-btn right-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </main>
+
+    <footer id="contacto">
+        <div class="footer-container">
+            <div class="form-section">
+                <h2 class="footer-title">CONTÁCTANOS</h2>
+                <p class="contact-text">Para cualquier información, contacta con nosotros por email, por teléfono o a través de nuestras redes sociales.</p>
+                <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                    <input type="hidden" name="access_key" value="35340165-f937-4f05-be50-b030b009fd06">
+                    <input type="hidden" name="subject" value="Nuevo Mensaje Web - Contacto General">
+                    <input type="text" name="nombre" placeholder="Tu Nombre" required>
+                    <input type="email" name="email" placeholder="Tu Correo Electrónico" required>
+                    <textarea name="mensaje" rows="4" placeholder="Escribe tu mensaje..." required></textarea>
+                    <button type="submit">ENVIAR MENSAJE</button>
+                </form>
+            </div>
+            <div class="info-section">
+                <h3 class="footer-title">DATOS DE CONTACTO</h3>
+                <ul class="contact-list">
+                    <li><i class="fas fa-envelope"></i> mumor.sports.events@gmail.com</li>
+                    <li><i class="fas fa-phone"></i> 600 033 513 / 644 326 137</li>
+                </ul>
+                <div class="social-links">
+                    <a href="https://wa.me/34600033513" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="https://instagram.com/mumor_sports" target="_blank" class="instagram"><i class="fab fa-instagram"></i> @mumor_sports</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <img src="assets/img/logo.jpeg" alt="Mumor Logo" class="footer-logo-img">
+            <p class="copyright-text">&copy; 2025 Mumor Sports Events. Valencia, España.</p>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
