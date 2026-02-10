@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    /* 1. LÓGICA DE FLECHAS SCROLL */
+    /* 1. LÓGICA DE FLECHAS SCROLL (DINÁMICA) */
     const scrollContainer = document.querySelector('.horizontal-scroll-container');
     const leftBtn = document.getElementById('scrollLeft');
     const rightBtn = document.getElementById('scrollRight');
@@ -9,9 +9,14 @@ document.addEventListener('DOMContentLoaded', function() {
         function getScrollAmount() {
             const card = scrollContainer.querySelector('.scroll-card');
             if (card) {
-                return card.offsetWidth + 30; 
+                // Calculamos el 'gap' (espacio) real que hay en el CSS
+                const style = window.getComputedStyle(scrollContainer);
+                const gap = parseInt(style.gap) || 0;
+                
+                // El desplazamiento es el ancho de la tarjeta + el espacio
+                return card.offsetWidth + gap; 
             }
-            return 350;
+            return 350; // Valor de seguridad
         }
 
         leftBtn.addEventListener('click', () => {
@@ -35,34 +40,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* 3. LÓGICA DEL DESPLEGABLE EN MÓVIL (ARREGLO DEPORTES) */
-    // Buscamos el enlace 'DEPORTES' que está dentro de un li.dropdown
-    const deportesLink = document.querySelector('.dropdown > a');
-    const dropdownLi = document.querySelector('.dropdown');
-
-    if(deportesLink && dropdownLi) {
-        deportesLink.addEventListener('click', function(e) {
-            // Solo aplicamos esta lógica si es una pantalla móvil (menos de 768px)
-            if (window.innerWidth <= 768) {
-                // Evitamos que navegue a deportes.html inmediatamente
-                e.preventDefault();
-                // Alternamos la clase que muestra el submenú
-                dropdownLi.classList.toggle('show-dropdown');
-            }
-        });
-    }
-
-    /* 4. MARCAR CAJA SELECCIONADA Y CERRAR MENÚ AL CLICAR */
+    /* 3. CERRAR MENÚ AL CLICAR EN ENLACE */
     const navLinks = document.querySelectorAll('.nav-links a');
 
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // Si es el botón de deportes en móvil, no cerramos el menú todavía (queremos ver el desplegable)
-            if (window.innerWidth <= 768 && this.parentElement.classList.contains('dropdown')) {
-                return; 
-            }
-
-            // Si es cualquier otro enlace, cerramos el menú móvil
+            
+            // Si el menú está abierto, lo cerramos
             if(navLinksContainer.classList.contains('active')) {
                 navLinksContainer.classList.remove('active');
             }

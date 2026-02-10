@@ -12,11 +12,25 @@
 
 /* --- FONDO GENERAL --- */
 body { 
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../assets/img/logo-sinletras.png');
+    /* 1. IMAGEN PNG (Como pediste) + Gradiente suave (0.3) */
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../assets/img/logo-sinletras.png');
+    
+    /* 2. FIJAR EL FONDO */
     background-attachment: fixed; 
-    background-size: cover; 
-    background-position: center;
+    
+    /* 3. POSICIÓN CENTRADA */
+    background-position: center center;
+    
+    /* 4. EVITAR REPETICIÓN */
     background-repeat: no-repeat;
+    
+    /* 5. TAMAÑO ESCRITORIO: Cubrir todo */
+    background-size: cover; 
+    
+    /* 6. COLOR DE FONDO BLANCO (Clave para que se funda con tu logo) */
+    background-color: #ffffff;
+    
+    min-height: 100vh;
     color: var(--text-white); 
     overflow-x: hidden;
 }
@@ -29,7 +43,8 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     background-color: rgba(0, 0, 0, 0.4); 
     display: flex; justify-content: center; align-items: center; 
     padding: 0; 
-    z-index: 1000; backdrop-filter: blur(4px);
+    z-index: 1000; 
+    backdrop-filter: blur(4px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
@@ -40,7 +55,7 @@ nav {
 
 /* ESTILOS DEL MENÚ DE ESCRITORIO */
 .nav-links { list-style: none; display: flex; height: 100%; width: 100%; justify-content: space-between; margin: 0; padding: 0; }
-.nav-links li { height: 100%; flex-grow: 1; display: flex; align-items: center; position: relative; } /* Added position relative for dropdown alignment */
+.nav-links li { height: 100%; flex-grow: 1; display: flex; align-items: center; position: relative; } 
 .nav-links a { 
     color: var(--text-white); font-weight: 900; font-size: 1rem;
     text-transform: uppercase; width: 100%; height: 100%; 
@@ -51,7 +66,7 @@ nav {
 
 /* --- BOTÓN HAMBURGUESA (MÓVIL) --- */
 .menu-toggle {
-    display: none; /* Oculto en PC */
+    display: none;
     flex-direction: column;
     cursor: pointer;
     padding: 10px;
@@ -61,7 +76,7 @@ nav {
     margin: 3px 0; transition: 0.3s; border-radius: 2px;
 }
 
-/* Dropdown Desktop (Hover) */
+/* Dropdown Desktop */
 .dropdown-content {
     display: none; position: absolute; background-color: #1a1a1a;
     min-width: 250px; top: 90px; 
@@ -71,7 +86,6 @@ nav {
 .dropdown-content a { height: auto; padding: 20px; font-size: 1rem; justify-content: flex-start; color: var(--text-white); }
 .dropdown-content a:hover { background-color: #333; color: var(--accent-orange); }
 
-/* En escritorio: Hover muestra el menú */
 @media (min-width: 769px) {
     .dropdown:hover .dropdown-content { display: block; }
 }
@@ -141,6 +155,8 @@ nav {
 }
 .horizontal-scroll-container::-webkit-scrollbar { display: none; }
 .scroll-card { flex: 0 0 350px; height: 500px; scroll-snap-align: center; }
+
+/* Botones Flecha */
 .scroll-btn {
     background-color: var(--accent-orange); color: white; border: none;
     width: 50px; height: 50px; border-radius: 50%; cursor: pointer; z-index: 10;
@@ -208,6 +224,12 @@ nav {
 .copyright-area { margin-top: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 30px; text-align: center; }
 .footer-logo-img { height: 100px; margin-right: 0; margin-bottom: 15px; border-radius: 5px; background: white; padding: 5px; }
 
+/* --- ANIMACIONES --- */
+@keyframes navLinkFade {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* --- MEDIA QUERIES (ADAPTACIÓN MÓVIL) --- */
 @media (max-width: 1024px) { 
     .nav-links a { padding: 0 10px; font-size: 0.9rem; } 
@@ -215,36 +237,54 @@ nav {
 }
 
 @media (max-width: 768px) { 
+    /* ARREGLO FONDO MÓVIL (Clave: 'contain' en vez de 'cover') */
+    body {
+        /* Se usa 'contain' para que la imagen se vea entera en el ancho */
+        /* Al tener fondo blanco, el resto se rellena de blanco */
+        background-size: contain; 
+        
+        /* Posición centrada */
+        background-position: center center;
+        
+        /* Fijo */
+        background-attachment: fixed;
+    }
+
     #navbar { justify-content: space-between; padding: 0 20px; }
     .menu-toggle { display: flex; z-index: 1002; }
+    
     .nav-links {
         display: none; width: 100%; position: absolute; top: 90px; left: 0;
-        background-color: #000; flex-direction: column; height: auto;
+        background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px);
+        flex-direction: column; height: auto;
         padding-bottom: 20px; border-top: 2px solid var(--accent-orange);
     }
     .nav-links.active { display: flex; }
-    .nav-links li { width: 100%; display: block; text-align: center; margin: 0; border-bottom: 1px solid #333; }
+    
+    .nav-links li { width: 100%; display: block; text-align: center; margin: 0; border-bottom: 1px solid rgba(255,255,255,0.1); opacity: 0; }
+    .nav-links.active li { animation: navLinkFade 0.5s ease forwards; }
+    .nav-links.active li:nth-child(1) { animation-delay: 0.1s; }
+    .nav-links.active li:nth-child(2) { animation-delay: 0.2s; }
+    .nav-links.active li:nth-child(3) { animation-delay: 0.3s; }
+    .nav-links.active li:nth-child(4) { animation-delay: 0.4s; }
+    .nav-links.active li:nth-child(5) { animation-delay: 0.5s; }
+
     .nav-links a { padding: 20px; font-size: 1.2rem; }
+    .dropdown-content { display: none !important; }
+    .dropdown i { display: none; }
 
-    /* ARREGLO DESPLEGABLE MÓVIL: OCULTO POR DEFECTO */
-    /* 1. Desactivamos el efecto hover */
-    .dropdown:hover .dropdown-content { display: none; }
+    /* Slider móvil */
+    .slider-container-wrapper { padding: 0; }
+    .horizontal-scroll-container { gap: 0; padding: 20px 0; }
+    .scroll-card { flex: 0 0 100%; }
     
-    /* 2. Ocultamos el contenido por defecto */
-    .dropdown-content { 
-        position: relative; top: 0; background-color: #111; 
-        box-shadow: none; border: none; 
-        display: none; /* AQUÍ ESTÁ EL CAMBIO IMPORTANTE */
+    .scroll-btn {
+        position: absolute; top: 50%; transform: translateY(-50%);
+        background-color: rgba(251, 86, 42, 0.7); 
+        width: 40px; height: 40px; font-size: 1.2rem;
     }
-
-    /* 3. Clase que activaremos con JS cuando pulsen 'DEPORTES' */
-    .dropdown.show-dropdown .dropdown-content {
-        display: block;
-    }
-    
-    .dropdown-content a { padding-left: 0; color: #aaa; font-size: 1rem; }
-
-    .scroll-card { flex: 0 0 70vw; }
+    .left-btn { left: 10px; margin: 0; }
+    .right-btn { right: 10px; margin: 0; }
     
     .hero h1 { font-size: 2rem; }
     .hero h2 { font-size: 1.2rem; }
