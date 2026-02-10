@@ -15,28 +15,29 @@ body {
     min-height: 100vh;
     color: var(--text-white); 
     overflow-x: hidden;
-    position: relative; /* Necesario para que funcione el truco */
+    position: relative; 
 }
 
-/* --- 2. EL TRUCO PARA IPHONE: CAPA FIJA DETRÁS --- */
+/* --- 2. CAPA FIJA DETRÁS (Solución iPhone) --- */
 body::before {
     content: "";
-    position: fixed; /* Esto fija la imagen en iPhone sin romper el scroll */
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Se coloca detrás de todo el contenido */
+    z-index: -1; 
     
-    /* Configuración de la imagen y el brillo (0.2) */
+    /* IMAGEN DE FONDO .PNG + Gradiente 0.2 (Luminoso) */
     background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('../assets/img/logo-sinletras.png');
+    
+    /* POSICIÓN: CENTRO CENTRO */
     background-position: center center;
     background-repeat: no-repeat;
     
     /* En PC usamos cover */
     background-size: cover; 
     
-    /* Fondo blanco de seguridad */
     background-color: #ffffff;
 }
 
@@ -244,10 +245,11 @@ nav {
 @media (max-width: 768px) { 
     /* AJUSTE IMAGEN MÓVIL EN LA CAPA TRASERA */
     body::before {
-        /* Para móvil, usamos 'contain' (imagen entera) o '100% auto' */
-        /* Combinamos 'cover' y '100% auto' para que se vea decente */
+        /* Para móvil, usamos '100% auto' para que ocupe el ancho sin zoom */
         background-size: 100% auto; 
-        background-position: center top; /* Anclada arriba al centro */
+        
+        /* CAMBIO CLAVE: Posición CENTRO CENTRO */
+        background-position: center center; 
     }
 
     #navbar { justify-content: space-between; padding: 0 20px; }
