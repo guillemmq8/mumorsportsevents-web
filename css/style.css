@@ -18,7 +18,7 @@ body {
     position: relative; 
 }
 
-/* --- 2. CAPA FIJA DETRÁS (Solución iPhone + Fondo .png) --- */
+/* --- 2. CAPA FIJA DETRÁS (Solución iPhone) --- */
 body::before {
     content: "";
     position: fixed; 
@@ -96,37 +96,25 @@ nav {
     .dropdown:hover .dropdown-content { display: block; }
 }
 
-/* --- HERO SECTION (TEXTOS ACTUALIZADOS) --- */
+/* --- HERO SECTION --- */
 .hero {
     height: 100vh; background: transparent; 
     display: flex; align-items: center; justify-content: center;
     text-align: center; padding-top: 0; 
 }
 .hero-content { margin-top: 0; padding: 0 20px; }
-
 .hero h1 { 
     font-size: 3.8rem; margin-bottom: 15px; text-transform: uppercase; 
     letter-spacing: 2px; color: var(--accent-orange); font-weight: 900;
-    /* CAMBIO: Sombra negra sólida para máxima legibilidad */
-    text-shadow: 4px 4px 0px #000000;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
 }
-
 .hero h2 {
     font-size: 1.8rem; color: white; font-weight: 700; letter-spacing: 4px; 
-    text-transform: uppercase; margin-bottom: 20px; 
-    /* CAMBIO: Sombra más fuerte */
-    text-shadow: 3px 3px 0px #000000;
+    text-transform: uppercase; margin-bottom: 20px; text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
 }
-
 .hero p {
-    font-size: 1.4rem; font-style: italic; 
-    /* CAMBIO: Color blanco puro en vez de gris (#ddd) */
-    color: #ffffff; 
-    max-width: 800px; 
-    margin: 0 auto; 
-    /* CAMBIO: Más grosor y sombra negra definida */
-    font-weight: 600;
-    text-shadow: 2px 2px 2px #000000;
+    font-size: 1.4rem; font-style: italic; color: #ddd; max-width: 800px; 
+    margin: 0 auto; text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
 }
 
 /* --- GRID Y CARTAS (HOME) --- */
@@ -257,7 +245,10 @@ nav {
 @media (max-width: 768px) { 
     /* AJUSTE IMAGEN MÓVIL EN LA CAPA TRASERA */
     body::before {
+        /* Para móvil, usamos '100% auto' para que ocupe el ancho sin zoom */
         background-size: 100% auto; 
+        
+        /* CAMBIO CLAVE: Posición CENTRO CENTRO */
         background-position: center center; 
     }
 
